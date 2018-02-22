@@ -19,9 +19,7 @@
 ## 27. Remove Element
 读题。 顺序可变，只需要一个指针扫描，一个指针存储当前需要更改的位置。
 > Given an array and a value, remove all instances of that value in-place and return the new length.
-
 > Do not allocate extra space for another array, you must do this by modifying the input array in-place with O(1) extra memory.
-
 > ***The order of elements can be changed. It doesn't matter what you leave beyond the new length.***
 
 ```cpp
