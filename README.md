@@ -69,5 +69,7 @@ Fast and slow pointer.
 
 ## 160. Intersection of Two Linked Lists
 Step 1: check-null?
+
 Step 2: traverse to the end, store length, check-same end point?
+
 Step 3: traverse from the same start point, check-same pointer?
