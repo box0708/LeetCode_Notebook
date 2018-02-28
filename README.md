@@ -108,4 +108,13 @@ public:
 };
 ```
 
+## 234. Palindrome Linked List
+
+1. check: null? one node? two nodes?
+
+2. find middle node
+
+3. reverst the second half
+
+4. check: all same?
 
