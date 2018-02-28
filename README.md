@@ -73,3 +73,39 @@ Step 1: check-null?
 Step 2: traverse to the end, store length, check-same end point?
 
 Step 3: traverse from the same start point, check-same pointer?
+
+## 206. Reverse Linked List
+
+Iterative: prev, cur. temp. Select the next node and link it to the previous node.
+
+***do*** ```'head->next = NULL'``` ***in the end*** 
+
+```cpp
+class Solution {
+public:
+    ListNode* reverseList(ListNode* head) {
+        if (head == NULL)
+            return NULL;
+            
+        if (head->next == NULL)
+            return head;
+            
+        ListNode* prev = head;
+        ListNode* cur = head->next;
+        ListNode* temp;
+        
+        while(cur)
+        {
+            temp = cur->next;
+            cur->next = prev;
+            //prev->next = NULL;
+            prev = cur;
+            cur = temp;
+        }
+        head->next = NULL;
+        return prev;
+    }
+};
+```
+
+
