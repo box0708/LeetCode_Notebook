@@ -118,3 +118,25 @@ public:
 
 4. check: all same?
 
+## 53. Maximum Subarray
+```cpp
+class Solution {
+public:
+    int maxSubArray(vector<int>& nums) {
+        int result = INT_MIN, sum = 0, index = 0;
+        
+        for(index = 0; index < nums.size(); index++)
+        {
+            sum = sum + nums[index];
+            if (sum <= nums[index])
+                {
+                    sum = nums[index];
+                    result = max(sum, result);
+                }
+                else
+                    result = max(sum, result);
+        }
+        return result;
+    }
+};
+```
