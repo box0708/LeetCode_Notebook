@@ -150,3 +150,26 @@ public:
 ``` int i=(m+n-1), p1=m-1, p2=n-1; ```
 
 Start traversing from the end of ```nums1[i]```, a different version of linked-list's merge sorting.
+
+## 119. Pascal's Triangle II
+> Given an index k, return the k_th row of the Pascal's triangle.
+
+Initilize the result, and update from the end of result.
+
+(Build the i_th row of the whole Pascal's triangle after the i_th time loop.
+
+```cpp
+class Solution {
+public:
+    vector<int> getRow(int rowIndex) {  
+        vector<int> temp(rowIndex+1, 0);
+        temp[0] = 1;
+        for(int i=1; i<=rowIndex; i++)
+        {
+            for(int j=i; j>=1; j--)
+                temp[j] = temp[j] + temp[j-1];
+        }
+        return temp;
+    }
+};
+```
