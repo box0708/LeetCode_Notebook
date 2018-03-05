@@ -202,3 +202,52 @@ public:
     }
 };
 ```
+## 167. Two Sum II - Input array is sorted
+> Given an array of integers that is already sorted in ascending order, find two numbers such that they add up to a specific target number.
+
+> The function twoSum should return indices of the two numbers such that they add up to the target, where index1 must be less than index2. Please note that your returned answers (both index1 and index2) are not zero-based.
+
+> You may assume that each input would have exactly one solution and you may not use the same element twice.
+
+1. hash-map
+
+2. the push_back method of c++ vector
+
+```cpp
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& numbers, int target) {
+        vector<int> result;
+        if (numbers.size() <= 1){
+            return result;
+        }
+        
+        unordered_map<int,int> myMap;
+        for(int i = 0; i < numbers.size(); i++)
+            myMap[numbers[i]] = i;
+        
+        for(int i=0; i<numbers.size(); i++)
+        {
+            int rest = target - numbers[i];
+            if (myMap.find(rest) != myMap.end()){
+                int index = myMap[rest];
+                if (index == i){
+                    continue;
+                }
+                
+                if (index < i){
+                    result.push_back(index+1);  
+                    result.push_back(i+1);
+                    return result;
+                }
+                
+                else{
+                    result.push_back(i+1);  
+                    result.push_back(index+1);
+                    return result;
+                }
+            }
+        }
+    }
+};
+```
