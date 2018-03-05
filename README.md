@@ -251,3 +251,12 @@ public:
     }
 };
 ```
+ ## 189. Rotate Array
+ 1. Reverse: 3 times.
+ 
+ 2. Different methods of swap
+ ```cpp
+ a=a+b;
+ b=a-b;
+ a=a-b;
+ ```
