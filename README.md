@@ -323,3 +323,37 @@ public:
     }
 };
 ```
+## 532. K-diff Pairs in an Array
+
+> Given an array of integers and an integer k, you need to find the number of unique k-diff pairs in the array. Here a k-diff pair is defined as an integer pair (i, j), where i and j are both numbers in the array and their absolute difference is k.
+
+Note: ```cpp if (A.find(nums[i]+k) != A.end() && A[nums[i]+k] != i) ```
+
+```cpp
+class Solution {
+public:
+    int findPairs(vector<int>& nums, int k) {
+        if (nums.size()<=1 || k<0){
+            return 0;
+        }
+        
+        unordered_map<int,int> A;
+        
+        for (int i=0; i<nums.size(); i++)
+        {
+            A[nums[i]] = i;
+        }
+        
+        int result=0;
+        
+        for(int i=0; i<nums.size(); i++)
+        {
+            if (A.find(nums[i]+k) != A.end() && A[nums[i]+k] != i){
+                result++;
+                A.erase(nums[i]+k);
+            }
+        }
+        return result;
+    }
+};
+```
