@@ -260,3 +260,27 @@ public:
  b=a-b;
  a=a-b;
  ```
+
+## 219. Contains Duplicate II
+> Given an array of integers and an integer k, find out whether there are two distinct indices i and j in the array such that nums[i] = nums[j] and the absolute difference between i and j is at most k.
+```cpp
+class Solution {
+public:
+    bool containsNearbyDuplicate(vector<int>& nums, int k) {
+        unordered_map<int,int> myMap;
+        
+        for (int i=0; i<nums.size(); i++)
+        {
+            if ((myMap.find(nums[i]) != myMap.end()) && (i - myMap[nums[i]]) <= k){
+                return true;
+            }
+            else
+            {
+                myMap[nums[i]] = i;
+            }
+        }
+        
+        return false;
+    }
+};
+```
