@@ -37,12 +37,14 @@ Find the continuous 0s. Use the built in methods of C++ vector, insert 0 into th
 Find the 3 biggest numbers and 2 smallest numbers.
 
 ## 643. Maximum Average Subarray I
-1. Use a windows to scan through the all array.
-2. 
-```double sum = accumulate(nums.begin(), nums.begin()+k, 0), result=sum;
+Use a windows to scan through the all array.
+```cpp
+        double sum = accumulate(nums.begin(), nums.begin()+k, 0), result=sum;
         for (int i=k; i<nums.size(); i++)
         {
             sum = sum + nums[i] - nums[i-k];
             result = max(result, sum);
         }
 ```
+
+
