@@ -47,4 +47,5 @@ Use a windows to scan through the all array.
         }
 ```
 
-
+## 697. Degree of an Array
+Use 3 hash map (unordered_map) to store the frequency, the minimun index and maximum index for nums[i]. Meanwhile, record the degree of the array. Then scan through the whole array to get the shortest sub-array.
