@@ -55,7 +55,7 @@ Use 3 hash map (unordered_map) to store the frequency, the minimun index and max
 
 > Once you pay the cost, you can either climb one or two steps. You need to find minimum cost to reach the top of the floor, and you can either start from the step with index 0, or the step with index 1.
 
-Dynamtic programming.
+Dynamtic programming. ```cpp dp[i] = min(dp[i-2]+cost[i-2], dp[i-1]+cost[i-1]); ```
 ```cpp
 class Solution {
 public:
