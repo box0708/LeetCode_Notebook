@@ -49,3 +49,29 @@ Use a windows to scan through the all array.
 
 ## 697. Degree of an Array
 Use 3 hash map (unordered_map) to store the frequency, the minimun index and maximum index for nums[i]. Meanwhile, record the degree of the array. Then scan through the whole array to get the shortest sub-array.
+
+## 746. Min Cost Climbing Stairs
+> On a staircase, the i-th step has some non-negative cost cost[i] assigned (0 indexed).
+
+> Once you pay the cost, you can either climb one or two steps. You need to find minimum cost to reach the top of the floor, and you can either start from the step with index 0, or the step with index 1.
+
+Dynamtic programming.
+```cpp
+class Solution {
+public:
+    int minCostClimbingStairs(vector<int>& cost) {
+        int length = cost.size()+1; // the terminal state, cost.size()+1
+        int dp[length];
+        
+        dp[0] = 0;
+        dp[1] = 0;
+        
+        for (int i=2; i<length; i++)
+        {
+            dp[i] = min(dp[i-2]+cost[i-2], dp[i-1]+cost[i-1]);
+        }
+        
+        return dp[length-1];
+    }
+};
+```
