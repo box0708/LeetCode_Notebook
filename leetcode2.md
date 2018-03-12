@@ -75,3 +75,10 @@ public:
     }
 };
 ```
+
+## 198. House Robber
+Dynamic programming.
+
+1. Find the equation.
+
+2. The size of the ```dp``` vector.
