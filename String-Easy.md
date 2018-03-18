@@ -47,3 +47,56 @@ public:
     }
 };
 ```
+## 443. String Compression
+
+> Given an array of characters, compress it in-place.
+
+> The length after compression must always be smaller than or equal to the original array.
+
+> Every element of the array should be a character (not int) of length 1.
+
+> After you are done modifying the input array in-place, return the new length of the array.
+
+1. In-place: two pointer, scan once.
+
+2. Store the count the current char (```c = chars[i]```), determine the value of count, then update the ```char[result]```
+
+```cpp
+class Solution {
+public:
+    int compress(vector<char>& chars) {
+        if (chars.size() <= 1){
+            return chars.size();
+        }
+        
+        char c = chars[0];
+        int result=1, count=1;
+        for (int i=1; i<chars.size(); i++){
+            if (chars[i] == c){
+                count++;
+            }
+            else{
+                if (count>1){
+                    string s = to_string(count);  
+                    for (auto ch : s) {  
+                        chars[result] = ch;
+                        result++;
+                    }
+                }
+                count=1;
+                c = chars[i];
+                chars[result++]=c;
+            }
+        }
+        if (count>1){
+            string s = to_string(count);  
+            for (auto ch : s) {  
+                chars[result] = ch;
+                result++;
+            }
+        }
+        chars.resize(result);
+        return result;
+    }
+};
+```
