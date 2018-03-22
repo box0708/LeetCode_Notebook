@@ -117,3 +117,5 @@ public:
 > 
 > Note:
 > The length of A and B will be between 1 and 10000.
+
+The end condition: ```temp.size() - A.size() > B.size()```. The usage of built-in ```string.find()``` function. 
