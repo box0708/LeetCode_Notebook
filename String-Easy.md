@@ -100,3 +100,9 @@ public:
     }
 };
 ```
+
+## 541. Reverse String II
+
+1. the length of each step is ```2*k```
+
+2. the usage of built-in ```reverse``` method
