@@ -119,3 +119,11 @@ public:
 > The length of A and B will be between 1 and 10000.
 
 The end condition: ```temp.size() - A.size() > B.size()```. The usage of built-in ```string.find()``` function. 
+
+## 696. Count Binary Substrings
+
+Count the length of contious '1' and '0'.
+
+```11001100``` -> ```2,2,2,2```
+
+```result = result + min(A[i], A[i+1])```
