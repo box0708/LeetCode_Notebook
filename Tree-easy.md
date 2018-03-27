@@ -99,3 +99,58 @@ public:
     }
 };
 ```
+
+## 501. Find Mode in Binary Search Tree
+
+> Given a binary search tree (BST) with duplicates, find all the mode(s) (the most frequently occurred element) in the given BST.
+> 
+> Assume a BST is defined as follows:
+> 
+> > The left subtree of a node contains only nodes with keys less than or equal to the node's key.
+> >
+> > The right subtree of a node contains only nodes with keys greater than or equal to the node's key.
+> >
+> > Both the left and right subtrees must also be binary search trees.
+
+```cpp
+class Solution {
+public:
+    vector<int> findMode(TreeNode* root) {
+        vector<int> res;
+        if (root == NULL){
+            return res;
+        }
+        
+        stack<TreeNode*> node_stack;
+        TreeNode* node = root;
+        TreeNode* last = NULL;
+        int count=1, maximum=0;
+        
+        while (node != NULL || node_stack.empty() != true){
+            while (node != NULL){
+                node_stack.push(node);
+                node = node->left;
+            }
+            
+            node = node_stack.top();
+            node_stack.pop();
+            
+            if (last){
+                count = (node->val == last->val) ? count + 1 : 1;
+            }
+            
+            if (count >= maximum) {
+                if (count > maximum) {
+                    res.clear();
+                }
+                res.push_back(node->val);
+                maximum = count;
+            }
+            
+            last = node;
+            node = node->right;
+        }
+        return res;
+    }
+};
+```
