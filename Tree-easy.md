@@ -187,3 +187,49 @@ public:
     }
 };
 ```
+
+## 543. Diameter of Binary Tree
+
+> Given a binary tree, you need to compute the length of the diameter of the tree. The diameter of a binary tree is the length of the longest path between any two nodes in a tree. This path may or may not pass through the root.
+
+Find the node whihc has the biggest ```depth(node->left) + depth(node->right)```
+
+```cpp
+class Solution {
+public:
+    int diameterOfBinaryTree(TreeNode* root) {
+        if (!root){
+            return 0;
+        }
+        
+        stack<TreeNode*> node_stack;
+        //node_stack.push(root);
+        TreeNode* cur = root;
+        int result = 0;
+        
+        while (!node_stack.empty() || cur){
+            while (cur){
+                node_stack.push(cur);
+                cur = cur->left;
+            }
+            
+            cur = node_stack.top();
+            node_stack.pop();
+            
+            result = max(depth(cur->left) + depth(cur->right), result);
+            
+            cur = cur->right;
+        }
+        
+        return result;
+    }
+    
+    int depth(TreeNode* root){
+        if (!root){
+            return 0;
+        }
+        
+        return 1 + max(depth(root->left), depth(root->right));
+    }
+};
+```
