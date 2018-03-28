@@ -233,3 +233,37 @@ public:
     }
 };
 ```
+
+## 563. Binary Tree Tilt
+
+> Given a binary tree, return the tilt of the whole tree.
+> 
+> The tilt of a tree node is defined as the absolute difference between the sum of all left subtree node values and the sum of all right subtree node values. Null node has tilt 0.
+> 
+> The tilt of the whole tree is defined as the sum of all nodes' tilt.
+
+Post-order traverse.
+
+```cpp
+class Solution {
+public:
+    int findTilt(TreeNode* root) {
+        if(!root){
+            return 0;
+        }
+        int res = 0;    
+        postorder(root, res);
+        return res;
+    }
+    
+    int postorder(TreeNode* root, int& res){
+        if (!root){
+            return 0;
+        }  
+        int leftsum = postorder(root->left, res);
+        int rightsum = postorder(root->right, res);   
+        res = res + max(leftsum-rightsum, rightsum-leftsum);   
+        return leftsum + rightsum + root->val;
+    }
+};
+```
