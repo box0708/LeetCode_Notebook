@@ -267,3 +267,35 @@ public:
     }
 };
 ```
+
+## 572. Subtree of Another Tree
+
+> Given two non-empty binary trees s and t, check whether tree t has exactly the same structure and node values with a subtree of s. A subtree of s is a tree consists of a node in s and all of this node's descendants. The tree s could also be considered as a subtree of itself.
+
+Step 1: check root node: same tree?
+Step 2: check ```root->left``` and ```root->right```
+```cpp
+class Solution {
+public:
+    bool isSubtree(TreeNode* s, TreeNode* t) {
+        if (!s) return false;
+        if (!t) return true;
+        if (check(s, t)){
+            return true;
+        }
+        else{
+            return isSubtree(s->left, t) || isSubtree(s->right, t);
+        }
+    }
+    
+    bool check(TreeNode* s, TreeNode* t) {
+        if (!s && !t){
+            return true;
+        }        
+        if (!s || !t){
+            return false;
+        }        
+        return (s->val == t->val) && check(s->left, t->left) && check(s->right, t->right);
+    }
+};
+```
