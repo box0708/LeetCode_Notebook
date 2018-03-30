@@ -41,3 +41,28 @@ public:
     }
 };
 ```
+
+## 744. Find Smallest Letter Greater Than Target
+
+> Given a list of sorted characters letters containing only lowercase letters, and given a target letter target, find the smallest element in the list that is larger than the given target.
+> 
+> Letters also wrap around. For example, if the target is target = 'z' and letters = ['a', 'b'], the answer is 'a'.
+
+1. Use binary search to locate the two boundries of ```target```.
+
+2. ```return letters[end % letters.size()];```
+
+```cpp
+class Solution {
+public:
+    char nextGreatestLetter(vector<char>& letters, char target) {
+        int start=0, end=letters.size();
+        while(start < end){
+            int mid = start + (end - start)/2;
+            if (letters[mid]-'a' <= target-'a') start = mid+1;
+            else end = mid;
+        }
+        return letters[end % letters.size()];
+    }
+};
+```
