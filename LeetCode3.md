@@ -31,3 +31,25 @@ public:
     }
 };
 ```
+
+## 136. Single Number
+
+The usage of 'XOR'.
+
+> 0 xor x = x;
+> x xor x = 0;
+> xor, swap rule;
+
+```cpp
+class Solution {
+public:
+    int singleNumber(vector<int>& nums) {
+        if (nums.size()==1) return nums[0];
+        int temp = 0;
+        for (int i=0; i<nums.size(); i++){
+            temp = temp ^ nums[i];
+        }
+        return temp;
+    }
+};
+```
