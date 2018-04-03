@@ -2,6 +2,8 @@
 
 > Given an integer n, generate all structurally unique BST's (binary search trees) that store values 1...n.
 
+Note: the way of combining different trees.
+
 ```cpp
 class Solution {
 public:
