@@ -110,3 +110,34 @@ public:
     }
 };
 ```
+
+
+## 152. Maximum Product Subarray
+
+> Find the contiguous subarray within an array (containing at least one number) which has the largest product.
+> 
+> For example, given the array [2,3,-2,4],
+> the contiguous subarray [2,3] has the largest product = 6.
+
+
+Note: ```+ * +``` and ```- * -```, store the maximum(positive) and minimum(negative), compare and update them once visit a number(shall I choose a new start for DP?)
+
+```cpp
+class Solution {
+public:
+    int maxProduct(vector<int>& nums) {
+        if (nums.size() == 1) return nums[0];
+        
+        int max_mul=nums[0], min_mul=nums[0], result=nums[0];
+        
+        for (int i=1; i<nums.size(); i++){
+            int a = max_mul * nums[i];
+            int b = min_mul * nums[i];
+            max_mul = max(max(a,b), nums[i]);
+            min_mul = min(min(a,b), nums[i]);
+            result = max(max_mul, result);
+        }
+        return result;
+    }
+};
+```
