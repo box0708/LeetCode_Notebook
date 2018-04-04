@@ -76,6 +76,8 @@ public:
 > 
 > Return true because "leetcode" can be segmented as "leet code".
 
+
+> 
 >  i: 0  1   2   3   4   5   6   7   8
 > 
 >        l | e | e | t | c | o | d | e 
