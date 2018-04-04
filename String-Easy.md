@@ -59,7 +59,7 @@ public:
 
 1. In-place: two pointer, scan once.
 
-2. Store the count the current char (```c = chars[i]```), determine the value of count, then update the ```char[result]```
+2. Add one to the count if the current char equal to the first char(```c = chars[i]```), determine the value of count, then update the ```char[result]```
 
 ```cpp
 class Solution {
