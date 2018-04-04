@@ -65,3 +65,46 @@ public:
     }
 };
 ```
+
+## 139. Word Break
+
+> Given a non-empty string s and a dictionary wordDict containing a list of non-empty words, determine if s can be segmented into a space-separated sequence of one or more dictionary words. You may assume the dictionary does not contain duplicate words.
+> 
+> For example, given
+> s = "leetcode",
+> dict = ["leet", "code"].
+> 
+> Return true because "leetcode" can be segmented as "leet code".
+
+>  i: 0  1   2   3   4   5   6   7   8
+> 
+>        l | e | e | t | c | o | d | e 
+> 
+>                j       i |
+> 
+>                check 'etc'
+
+```cpp
+class Solution {
+public:
+    bool wordBreak(string s, vector<string>& wordDict) {
+        if (s.size() == 0 || wordDict.size() == 0) return false;
+        
+        bool dp[s.size()+1] = {false};
+        dp[0] = true;
+        
+        for (int i=1; i<=s.size(); i++){
+            for (int j=0; j<i; j++){
+                string temp = s.substr(j, i-j);
+                for (int index=0; index<wordDict.size(); index++){
+                    if (dp[j] && wordDict[index] == temp){
+                        dp[i] = true;
+                        break;
+                    }
+                }
+            }
+        }
+        return dp[s.size()];
+    }
+};
+```
