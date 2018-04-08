@@ -39,11 +39,9 @@ public:
 > > A solution set is:
 > > 
 > > [
-> >
 > >   [-1, 0, 1],
 > > 
 > >   [-1, -1, 2]
-> > 
 > > ]
 
 Solution: sort the given array, and scan from the two ends.
