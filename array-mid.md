@@ -85,3 +85,75 @@ public:
     }
 };
 ```
+
+## 31. Next Permutation
+
+> Implement next permutation, which rearranges numbers into the lexicographically next greater permutation of numbers.
+> 
+> If such arrangement is not possible, it must rearrange it as the lowest possible order (ie, sorted in ascending order).
+> 
+> The replacement must be in-place, do not allocate extra memory.
+> 
+> Here are some examples. Inputs are in the left-hand column and its corresponding outputs are in the right-hand column.
+> 
+> 1,2,3 → 1,3,2
+> 
+> 3,2,1 → 1,2,3
+> 
+> 1,1,5 → 1,5,1
+
+Note: traverse from the end, find the position where ```nums[pos] > nums[pos-1] && nums[pos] < nums[pos+1]```.
+
+```cpp
+class Solution {
+public:
+    void nextPermutation(vector<int>& nums) {
+        if (nums.size()==0 || nums.size()==1) return;
+        
+        int pos = nums.size()-1;
+        while (pos>0 && nums[pos]<=nums[pos-1]) pos--; // find the pos
+        
+        if (pos == 0){
+            sort(nums.begin(), nums.end());
+        }
+        else{
+            int target = nums[pos-1];
+            for (int i=nums.size()-1; i>pos-1; i--){
+                if (nums[i] > target) {
+                    nums[pos-1] = nums[i];
+                    nums[i] = target;
+                    break;
+                }
+            }
+            //sort(nums.begin()+pos, nums.end());
+            helper(nums, pos, nums.size()-1);
+        }
+    }
+    // quick-sort
+    void helper(vector<int>& nums, int start, int end){
+        if (start < end){
+            int i=start, j=end, temp = nums[start];
+            while (i < j){
+                while (i<j && nums[j] >= temp)
+                    j--;
+                if (i < j) {
+                    nums[i] = nums[j];
+                    i++;
+                }
+                while (i<j && nums[i] <= temp){
+                    i++;
+                }
+                if (i < j) {
+                    nums[j] = nums[i];
+                    j--;
+                }
+                nums[i] = temp;
+                helper(nums, start, i-1);
+                helper(nums, i+1, end);
+                return;
+            }
+        }
+        return;
+    }
+};
+```
