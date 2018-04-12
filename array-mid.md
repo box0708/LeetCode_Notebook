@@ -186,7 +186,7 @@ public:
                 if (target <= nums[j] && target > nums[mid]) i = mid+1; // target in the right sorted part
                 else j = mid-1; // target not in sorted part
             }
-            else{ // without sort
+            else{ // without rotation
                 if (target > nums[mid]) i = mid+1;
                 else j = mid-1;
             }
