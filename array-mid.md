@@ -168,7 +168,7 @@ public:
 > 
 > You may assume no duplicate exists in the array.
 
-Note: binary search. ```while (i <= j)```
+Note: 1. binary search. ```while (i <= j)``` 2. use binary search to handle the partly sorted array
 
 ```cpp
 class Solution {
@@ -177,16 +177,16 @@ public:
         int i=0, j=nums.size()-1;
         while (i <= j){
             int mid = i + (j-i)/2;
-            if (target == nums[mid]) return mid;
-            if (nums[mid] > nums[j]){
-                if (target >= nums[i] && target < nums[mid]) j = mid-1;
-                else i = mid+1;
+            if (target == nums[mid]) return mid; // find the target
+            if (nums[mid] > nums[j]){ // rotated, mid in the left-hand side part
+                if (target >= nums[i] && target < nums[mid]) j = mid-1; // target in the left-hand side part(sorted)
+                else i = mid+1; // target not in the sorted part
             }
-            else if (nums[mid] < nums[i]){
-                if (target <= nums[j] && target > nums[mid]) i = mid+1;
-                else j = mid-1;
+            else if (nums[mid] < nums[i]){ // rotated, mid in the right-hand side part
+                if (target <= nums[j] && target > nums[mid]) i = mid+1; // target in the right sorted part
+                else j = mid-1; // target not in sorted part
             }
-            else{
+            else{ // without sort
                 if (target > nums[mid]) i = mid+1;
                 else j = mid-1;
             }
