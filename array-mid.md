@@ -196,4 +196,55 @@ public:
 };
 ```
 
+## 34. Search for a Range
+
+> Given an array of integers nums sorted in ascending order, find the starting and ending position of a given target value.
+> 
+> Your algorithm's runtime complexity must be in the order of O(log n).
+> 
+> If the target is not found in the array, return [-1, -1].
+> 
+> 
+> Input: nums = [5,7,7,8,8,10], target = 8
+> 
+> Output: [3,4]
+
+```Sorted array``` and ```Runtime complexity O(log n)``` -> Binary search
+
+Use binary search to locate the start and end point.
+
+```cpp
+class Solution {
+public:
+    vector<int> searchRange(vector<int>& nums, int target) {
+        vector<int> res(2, -1);
+        if (nums.size() == 0) return res;
+        
+        int ll=0, lr=nums.size()-1;
+        while (ll <= lr){
+            int mid = ll + (lr-ll)/2;
+            if (nums[mid] < target)
+                ll = mid+1;
+            else
+                lr = mid-1;
+        }
+        
+        int rl=0, rr=nums.size()-1;
+        while (rl <= rr){
+            int mid = rl + (rr-rl)/2;
+            if (nums[mid] <= target) // here, <=
+                rl = mid+1;
+            else
+                rr = mid-1;
+        }
+        if (ll <= rr){
+            res[0] = ll;
+            res[1] = rr;
+        }
+        return res;
+    }
+};
+```
+
+
 
