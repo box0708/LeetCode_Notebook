@@ -33,3 +33,46 @@ public:
     }
 };
 ```
+
+## 86. Partition List
+
+> Given a linked list and a value x, partition it such that all nodes less than x come before nodes greater than or equal to x.
+> 
+> You should preserve the original relative order of the nodes in each of the two partitions.
+> 
+> Input: head = 1->4->3->2->5->2, x = 3
+> 
+> Output: 1->2->2->4->3->5
+
+Note: create and maintain two linked lists. Iterate the original linked list and link the two sub-lists after iteration.
+
+```cpp
+class Solution {
+public:
+    ListNode* partition(ListNode* head, int x) {
+        ListNode* p = new ListNode(-1);
+        ListNode* phead = p;
+        ListNode* q = new ListNode(-1);
+        ListNode* qhead = q;
+        
+        ListNode* temp = head;
+        while (temp != NULL){
+            if (temp->val < x){
+                ListNode* newnode = new ListNode(temp->val);
+                p->next = newnode;
+                p = p->next;
+            }
+            else{
+                ListNode* newnode = new ListNode(temp->val);
+                q->next = newnode;
+                q = q->next;
+            }
+            temp = temp->next;
+        }
+        
+        p->next = qhead->next;
+        qhead->next = NULL;
+        return phead->next;
+    }
+};
+```
