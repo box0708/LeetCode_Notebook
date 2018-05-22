@@ -246,5 +246,53 @@ public:
 };
 ```
 
+## ***39. Combination Sum***
 
+> Given a set of candidate numbers (candidates) (without duplicates) and a target number (target), find all unique combinations in candidates where the candidate numbers sums to target.
+> 
+> The same repeated number may be chosen from candidates unlimited number of times.
+> 
+> Note:
+> 
+> All numbers (including target) will be positive integers.
+> 
+> The solution set must not contain duplicate combinations.
+> 
+> Input: candidates = [2,3,6,7], target = 7,
+> 
+> A solution set is:
+> 
+> [
+> 
+> [7],
+> 
+> [2,2,3]
+> ]
 
+```cpp
+class Solution {
+public:
+    vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
+        vector<vector<int>> ans;
+        vector<int> cur;
+        sort(candidates.begin(), candidates.end());
+        helper(candidates, target, 0, cur, ans);
+        return ans;
+    }
+    
+    void helper(vector<int>& candidates, int target, int s, vector<int>& cur, vector<vector<int>>& ans){
+        if (target == 0){
+            ans.push_back(cur);
+            return;
+        }
+        
+        for (int i=s; i < candidates.size(); i++){
+            if (candidates[i] > target) break;
+            
+            cur.push_back(candidates[i]);
+            helper(candidates, target-candidates[i], i, cur, ans);
+            cur.pop_back();
+        }
+    }
+};
+```
