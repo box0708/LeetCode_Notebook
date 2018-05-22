@@ -76,3 +76,11 @@ public:
     }
 };
 ```
+
+## 92. Reverse Linked List II
+
+> Reverse a linked list from position m to n. Do it in one-pass.
+> 
+> Note: 1 ≤ m ≤ n ≤ length of list.
+
+Use a stack to reverse the partial linked list.
