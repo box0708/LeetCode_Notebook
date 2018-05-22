@@ -267,7 +267,10 @@ public:
 > [7],
 > 
 > [2,2,3]
+> 
 > ]
+
+Note: backtracking. 
 
 ```cpp
 class Solution {
